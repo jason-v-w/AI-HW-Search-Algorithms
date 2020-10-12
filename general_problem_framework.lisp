@@ -78,6 +78,18 @@
 		     :parent parent
 		     :action action
 		     :path-cost nil)))	; temporarily
+    (print "child-node-function")
+    (print child)
+    ; (print path-cost)
+    ; (print (node-path-cost child))
+    (print (funcall (general-problem-path-cost problem) (make-node :parent nil
+		    :state 'arad
+		    :path-cost nil
+		    :heuristic nil)))
+    (print (funcall (general-problem-path-cost problem) child))
 
     (setf (node-path-cost child) (funcall path-cost child)) ; set path-cost propety
+    
+    (print child)
+    
     child))				; return

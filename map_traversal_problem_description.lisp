@@ -88,19 +88,18 @@
 ;;; | Closure Actions Function |
 ;;; +--------------------------+
 
-;;; This function will, given a map as above, return a closure (function
-;;; internally referencing the map). The returned closure is a function of a
+;;; This function will, given a cities hash table as above, return a closure (function
+;;; internally referencing the cities hash table). The returned closure is a function of a
 ;;; state that will return the valid actions from that state. In this case, a
 ;;; state is a city name (as an atom) and an action is also a city name (as an
 ;;; atom). In essence, the closure will return the neighbors of a given city.
-(defun get-actions-generator (map)
+(defun get-actions-generator (cities-htable)
   "PRIVATE. Returns a closure/function that given a state returns a list of legal actions"
-  (let ((cities-htable (map-to-cities-hash-table map)))
-    ;; return a lambda function
-    #'(lambda (state)
+  ;; return a lambda function
+  #'(lambda (state)
       (mapcar #'(lambda (neighbor-assoc) (city-name (first neighbor-assoc)))
       	      (city-neighbors
-      	       (gethash state cities-htable))))))
+      	       (gethash state cities-htable)))))
 
 
 
@@ -111,22 +110,8 @@
 ;;; +----------------------------+
 
 ;;; Returns a closure which given a state determines if it is the goal state
-(defun get-goal-test-function (map end-city)
+(defun get-goal-test-function (end-city)
   #'(lambda (state) (city-equal state end-city)))
-
-
-
-
-
-;;; +------------------+
-;;; | Actions Function |
-;;; +------------------+
-
-;;; An action is represented by the name of the city that will be traveled to
-;;; A state is considered a city name
-(defun get-allowed-actions (state)
-  "PRIVATE. Returns a list of city names that can be travelled to directly"
-  (mapcar 'city-name (city-neighbors (gethash state *cities-hash-table*))))
 
 
 
@@ -141,9 +126,28 @@
 ;;; the current state. In the Romanian Holiday example, this function
 ;;; is a trivial one just returning the name of the action as it is
 ;;; the same as the name of the next state by design
-(defun get-transition-result (state action)
+(defun transition-result (state action)
   "PRIVATE. Returns the new state obtained by applying action to state"
   action)
+
+
+
+
+
+;;; +-----------------+
+;;; | Helper Function |
+;;; +-----------------+
+
+;;; Given two city names, determine if the cities are neighboring. Return the
+;;; distance between them or NIL. This function assumes that neigboring is an
+;;; reflexive relation and the distance from 1 to 2 is the same as the distance
+;;; from 2 to 1. For this reason, it will only check one of the neighbor lists.
+(defun neighbors-p (name-1 name-2 cities-htable)
+  (second (assoc name-1                          ; find name-1 as the key
+		 (city-neighbors                 ; in the association list of neighbors
+		  (gethash name-2 cities-htable))
+		 :test 'city-equal               ; so strings match considering case
+		 :key 'city-name)))              ; just looking at a city name
 
 
 
@@ -155,19 +159,22 @@
 
 ;;; Compute the path cost of a node. In general it does not need to be
 ;;; a sum of step costs, though in this case it will be.
-(defun get-path-cost-function (map)
+
+;;; TODO Make sure there is a guarantee that a node has a path-cost value before
+;;; computing the cost of a child
+(defun get-path-cost-function (cities-htable)
   "PRIVATE. Returns a closure that returns the path cost associted with a node"
   #'(lambda (node)
-  (let ((city-name (node-state node))
-	(prev-city-name (if (node-parent node) ; if parent is not nil
-			    (node-state (node-parent node))
-			  nil)))
-    (if (null prev-city-name)
-	0                               ; if no previous city, no cost
-      (or (node-path-cost node)		; use stored cost if non-nil to
-	                                ; prevents re-computing
-	  (+ (path-cost (node-parent node)) ; cost of parent
-	     (neighbors-p city-name prev-city-name))))))) ; + dist b/w cities
+      (let ((city-name (node-state node))
+	    (prev-city-name (if (node-parent node) ; if parent is not nil
+				(node-state (node-parent node))
+			      nil)))
+	(if (null prev-city-name)
+	    0				; if no previous city, no cost
+	  (or (node-path-cost node)	; use stored cost if non-nil to
+					; prevents re-computing
+	      (+ (node-path-cost (node-parent node)) ; cost of parent
+		 (neighbors-p city-name prev-city-name cities-htable))))))) ; + dist b/w cities
 
 
 
@@ -180,10 +187,11 @@
 (defun new-map-traversal-problem (map start-city end-city)
   "Returns a problem instance of trying to go from the start-city to the
   end-city in the map"
-  (make-general-problem
+  (let ((cities-htable (map-to-cities-hash-table map)))
+    (make-general-problem
      :init start-city
-     :actions (get-actions-generator map)
-     :transition-model 'get-transition-result
-     :goal-test (get-goal-test-function map end-city)
-     :path-cost 'path-cost
-     :state-equal-p 'city-equal))
+     :actions (get-actions-generator cities-htable)
+     :transition-model 'transition-result
+     :goal-test (get-goal-test-function end-city)
+     :path-cost (get-path-cost-function cities-htable)
+     :state-equal-p 'city-equal)))
