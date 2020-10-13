@@ -1,0 +1,16 @@
+This project contains four files specifying general functions that will be
+used. All four should be loaded into a (Franz Inc. Allegro) Common Lisp
+environment to make the required functions accessible.
+
+(load "/YOUR_PATH/general_problem_framework.lisp")
+(load "/YOUR_PATH/map_traversal_problem_description.lisp")
+(load "/YOUR_PATH/search_framework.lisp")
+(load "/YOUR_PATH/heap.lisp")
+
+Once these are loaded, you can load the last file which contains the top level
+code and a global variable defining the Romanian Holiday problem (finding a path
+in Romania from an arbitrary starting city to Bucharest). It also contains code
+that will be run to print 6 tables summarizing the performance of various
+algorithms, so loading it will produce these tables.
+
+(load "/YOUR_PATH/main.lisp")
