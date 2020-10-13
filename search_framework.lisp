@@ -54,7 +54,6 @@
 			     (test 'equal)
 			     (priority-function #'(lambda (x y) t))); vacuous ordering
   "Perform a graph search of the problem"
-  (print "GRAPHSEARCH")
   (let ((frontier (create-heap priority-function))                  ; empty priority queue
 	(frontier-or-explored-set (make-hash-table :test test))     ; empty hash table
 	(init-node (make-node :state (general-problem-init problem) ; node from initial state
@@ -85,45 +84,28 @@
 
       ;; graph search loop
       (do () (nil)                                 ; do forever
-	(print "repeat")
-	(print (loop for value being the hash-values of frontier-or-explored-set collect value))
-	; (print frontier)
 	(if (heap-empty-p frontier)	; if no options remain
-	    (progn
-	      (print "FAIL")
-	      (return nil)))		; return nil (represents failure)
+	      (return nil))		; return nil (represents failure)
 	(setq current-node (heap-remove frontier)) ; get current node (removed from frontier)
 
 	;; if a goal is found
-	(print (node-state current-node))
 	(if (funcall goal-test (node-state current-node))
 	    (return (make-general-solution :path current-node
 					   :extra (list
 						   (list "num-nodes-expanded"
 							 num-nodes-expanded)))))
 
-	(print "no goal found")
 	(add-to-frontier-or-explored current-node)
 
 	;; expand node
-	; (print "actions:")
-	; (print (funcall get-allowed-actions (node-state current-node)))
+	(print (node-state current-node))
+	(setq num-nodes-expanded (1+ num-nodes-expanded))
 	(dolist (action (funcall get-allowed-actions (node-state current-node))) ; for each allowed action
-	  ; (print "action:")
-	  ; (print action)
 	  (setq a-child-node (child-node problem ; get the child node for this action
 					 current-node
 					 action))
-
-	  ; (print "child node")
-	  ; (print a-child-node)
-	  ; (print "frontier-or-explored")
-	  ; (print frontier-or-explored-set)
-	  ; (print "in frontier?")
-	  ; (print (in-frontier-or-explored-p a-child-node))
 	  (if (not (in-frontier-or-explored-p a-child-node)) ; if not explored
 	      (progn
-		; (print "adding to frontier")
 		(add-to-frontier a-child-node)
 		(add-to-frontier-or-explored a-child-node))))))))
 
