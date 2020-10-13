@@ -1,0 +1,169 @@
+BEST-FIRST TREE SEARCH
+
+City Name        , Expanded, Path to Bucharest                                             , Path Cost, CPU Time
+
+ARAD             ,       51, (ARAD SIBIU RIMNICU_VILCEA PITESTI BUCHAREST)                 ,       418,      270
+BUCHAREST        ,        0, (BUCHAREST)                                                   ,         0,        0
+CRAIOVA          ,        7, (CRAIOVA PITESTI BUCHAREST)                                   ,       239,       11
+DOBRETA          ,       20, (DOBRETA CRAIOVA PITESTI BUCHAREST)                           ,       359,       36
+EFORIE           ,        5, (EFORIE HIRSOVA URZICENI BUCHAREST)                           ,       269,        3
+FAGARAS          ,        4, (FAGARAS BUCHAREST)                                           ,       211,        3
+GIURGIU          ,        1, (GIURGIU BUCHAREST)                                           ,        90,        0
+HIRSOVA          ,        4, (HIRSOVA URZICENI BUCHAREST)                                  ,       183,        6
+IASI             ,       10, (IASI VASLUI URZICENI BUCHAREST)                              ,       319,        7
+LUGOJ            ,       72, (LUGOJ MEHADIA DOBRETA CRAIOVA PITESTI BUCHAREST)             ,       504,      368
+MEHADIA          ,       45, (MEHADIA DOBRETA CRAIOVA PITESTI BUCHAREST)                   ,       434,      118
+NEAMT            ,       11, (NEAMT IASI VASLUI URZICENI BUCHAREST)                        ,       406,        9
+ORADEA           ,       43, (ORADEA SIBIU RIMNICU_VILCEA PITESTI BUCHAREST)               ,       429,      170
+PITESTI          ,        2, (PITESTI BUCHAREST)                                           ,       101,        1
+RIMNICU_VILCEA   ,        7, (RIMNICU_VILCEA PITESTI BUCHAREST)                            ,       198,       11
+SIBIU            ,       15, (SIBIU RIMNICU_VILCEA PITESTI BUCHAREST)                      ,       278,       24
+TIMISOARA        ,       90, (TIMISOARA ARAD SIBIU RIMNICU_VILCEA PITESTI BUCHAREST)       ,       536,      644
+URZICENI         ,        1, (URZICENI BUCHAREST)                                          ,        85,        1
+VASLUI           ,        5, (VASLUI URZICENI BUCHAREST)                                   ,       227,        6
+ZERIND           ,       93, (ZERIND ARAD SIBIU RIMNICU_VILCEA PITESTI BUCHAREST)          ,       493,      893
+
+
+
+
+
+GREADY TREE SEARCH
+
+City Name        , Expanded, Path to Bucharest                                             , Path Cost, CPU Time
+
+ARAD             ,        3, (ARAD SIBIU FAGARAS BUCHAREST)                                ,       450,        3
+BUCHAREST        ,        0, (BUCHAREST)                                                   ,         0,        0
+CRAIOVA          ,        2, (CRAIOVA PITESTI BUCHAREST)                                   ,       239,        2
+DOBRETA          ,        3, (DOBRETA CRAIOVA PITESTI BUCHAREST)                           ,       359,        2
+EFORIE           ,        3, (EFORIE HIRSOVA URZICENI BUCHAREST)                           ,       269,        1
+FAGARAS          ,        1, (FAGARAS BUCHAREST)                                           ,       211,        0
+GIURGIU          ,        1, (GIURGIU BUCHAREST)                                           ,        90,        1
+HIRSOVA          ,        2, (HIRSOVA URZICENI BUCHAREST)                                  ,       183,        1
+IASI             ,        3, (IASI VASLUI URZICENI BUCHAREST)                              ,       319,        4
+LUGOJ            ,        5, (LUGOJ MEHADIA DOBRETA CRAIOVA PITESTI BUCHAREST)             ,       504,        6
+MEHADIA          ,        4, (MEHADIA DOBRETA CRAIOVA PITESTI BUCHAREST)                   ,       434,        3
+NEAMT            ,        4, (NEAMT IASI VASLUI URZICENI BUCHAREST)                        ,       406,        2
+ORADEA           ,        3, (ORADEA SIBIU FAGARAS BUCHAREST)                              ,       461,        2
+PITESTI          ,        1, (PITESTI BUCHAREST)                                           ,       101,        1
+RIMNICU_VILCEA   ,        2, (RIMNICU_VILCEA PITESTI BUCHAREST)                            ,       198,        1
+SIBIU            ,        2, (SIBIU FAGARAS BUCHAREST)                                     ,       310,        3
+TIMISOARA        ,        6, (TIMISOARA LUGOJ MEHADIA DOBRETA CRAIOVA PITESTI BUCHAREST)   ,       615,        4
+URZICENI         ,        1, (URZICENI BUCHAREST)                                          ,        85,        1
+VASLUI           ,        2, (VASLUI URZICENI BUCHAREST)                                   ,       227,        2
+ZERIND           ,        4, (ZERIND ARAD SIBIU FAGARAS BUCHAREST)                         ,       525,        3
+
+
+
+
+
+A* TREE SEARCH
+
+City Name        , Expanded, Path to Bucharest                                             , Path Cost, CPU Time
+
+ARAD             ,        5, (ARAD SIBIU RIMNICU_VILCEA PITESTI BUCHAREST)                 ,       418,        8
+BUCHAREST        ,        0, (BUCHAREST)                                                   ,         0,        0
+CRAIOVA          ,        2, (CRAIOVA PITESTI BUCHAREST)                                   ,       239,        2
+DOBRETA          ,        4, (DOBRETA CRAIOVA PITESTI BUCHAREST)                           ,       359,        3
+EFORIE           ,        3, (EFORIE HIRSOVA URZICENI BUCHAREST)                           ,       269,        2
+FAGARAS          ,        1, (FAGARAS BUCHAREST)                                           ,       211,        1
+GIURGIU          ,        1, (GIURGIU BUCHAREST)                                           ,        90,        1
+HIRSOVA          ,        2, (HIRSOVA URZICENI BUCHAREST)                                  ,       183,        1
+IASI             ,        3, (IASI VASLUI URZICENI BUCHAREST)                              ,       319,        2
+LUGOJ            ,       10, (LUGOJ MEHADIA DOBRETA CRAIOVA PITESTI BUCHAREST)             ,       504,       11
+MEHADIA          ,        7, (MEHADIA DOBRETA CRAIOVA PITESTI BUCHAREST)                   ,       434,        4
+NEAMT            ,        4, (NEAMT IASI VASLUI URZICENI BUCHAREST)                        ,       406,        3
+ORADEA           ,        5, (ORADEA SIBIU RIMNICU_VILCEA PITESTI BUCHAREST)               ,       429,        6
+PITESTI          ,        1, (PITESTI BUCHAREST)                                           ,       101,        1
+RIMNICU_VILCEA   ,        2, (RIMNICU_VILCEA PITESTI BUCHAREST)                            ,       198,        5
+SIBIU            ,        4, (SIBIU RIMNICU_VILCEA PITESTI BUCHAREST)                      ,       278,        5
+TIMISOARA        ,       11, (TIMISOARA ARAD SIBIU RIMNICU_VILCEA PITESTI BUCHAREST)       ,       536,       12
+URZICENI         ,        1, (URZICENI BUCHAREST)                                          ,        85,        1
+VASLUI           ,        2, (VASLUI URZICENI BUCHAREST)                                   ,       227,        1
+ZERIND           ,        8, (ZERIND ARAD SIBIU RIMNICU_VILCEA PITESTI BUCHAREST)          ,       493,        7
+
+
+
+
+
+BEST-FIRST GRAPH SEARCH
+
+City Name        , Expanded, Path to Bucharest                                             , Path Cost, CPU Time
+
+ARAD             ,       12, (ARAD SIBIU FAGARAS BUCHAREST)                                ,       450,        5
+BUCHAREST        ,        0, (BUCHAREST)                                                   ,         0,        0
+CRAIOVA          ,        6, (CRAIOVA PITESTI BUCHAREST)                                   ,       239,        2
+DOBRETA          ,        8, (DOBRETA CRAIOVA PITESTI BUCHAREST)                           ,       359,        3
+EFORIE           ,        3, (EFORIE HIRSOVA URZICENI BUCHAREST)                           ,       269,        3
+FAGARAS          ,        3, (FAGARAS BUCHAREST)                                           ,       211,        2
+GIURGIU          ,        1, (GIURGIU BUCHAREST)                                           ,        90,        0
+HIRSOVA          ,        3, (HIRSOVA URZICENI BUCHAREST)                                  ,       183,        1
+IASI             ,        4, (IASI VASLUI URZICENI BUCHAREST)                              ,       319,        1
+LUGOJ            ,       12, (LUGOJ MEHADIA DOBRETA CRAIOVA PITESTI BUCHAREST)             ,       504,        5
+MEHADIA          ,        9, (MEHADIA DOBRETA CRAIOVA PITESTI BUCHAREST)                   ,       434,        8
+NEAMT            ,        4, (NEAMT IASI VASLUI URZICENI BUCHAREST)                        ,       406,        2
+ORADEA           ,       11, (ORADEA SIBIU FAGARAS BUCHAREST)                              ,       461,        6
+PITESTI          ,        2, (PITESTI BUCHAREST)                                           ,       101,        1
+RIMNICU_VILCEA   ,        5, (RIMNICU_VILCEA PITESTI BUCHAREST)                            ,       198,        3
+SIBIU            ,        9, (SIBIU FAGARAS BUCHAREST)                                     ,       310,        6
+TIMISOARA        ,       12, (TIMISOARA ARAD SIBIU FAGARAS BUCHAREST)                      ,       568,        5
+URZICENI         ,        1, (URZICENI BUCHAREST)                                          ,        85,        0
+VASLUI           ,        4, (VASLUI URZICENI BUCHAREST)                                   ,       227,        1
+ZERIND           ,       12, (ZERIND ORADEA SIBIU FAGARAS BUCHAREST)                       ,       532,        7
+
+
+
+
+
+GREADY GRAPH SEARCH
+
+City Name        , Expanded, Path to Bucharest                                             , Path Cost, CPU Time
+
+ARAD             ,        3, (ARAD SIBIU FAGARAS BUCHAREST)                                ,       450,        4
+BUCHAREST        ,        0, (BUCHAREST)                                                   ,         0,        1
+CRAIOVA          ,        2, (CRAIOVA PITESTI BUCHAREST)                                   ,       239,        1
+DOBRETA          ,        3, (DOBRETA CRAIOVA PITESTI BUCHAREST)                           ,       359,        2
+EFORIE           ,        3, (EFORIE HIRSOVA URZICENI BUCHAREST)                           ,       269,        2
+FAGARAS          ,        1, (FAGARAS BUCHAREST)                                           ,       211,        3
+GIURGIU          ,        1, (GIURGIU BUCHAREST)                                           ,        90,        1
+HIRSOVA          ,        2, (HIRSOVA URZICENI BUCHAREST)                                  ,       183,        1
+IASI             ,        3, (IASI VASLUI URZICENI BUCHAREST)                              ,       319,        2
+LUGOJ            ,        5, (LUGOJ MEHADIA DOBRETA CRAIOVA PITESTI BUCHAREST)             ,       504,        3
+MEHADIA          ,        4, (MEHADIA DOBRETA CRAIOVA PITESTI BUCHAREST)                   ,       434,        2
+NEAMT            ,        4, (NEAMT IASI VASLUI URZICENI BUCHAREST)                        ,       406,        2
+ORADEA           ,        3, (ORADEA SIBIU FAGARAS BUCHAREST)                              ,       461,        5
+PITESTI          ,        1, (PITESTI BUCHAREST)                                           ,       101,        1
+RIMNICU_VILCEA   ,        2, (RIMNICU_VILCEA PITESTI BUCHAREST)                            ,       198,        2
+SIBIU            ,        2, (SIBIU FAGARAS BUCHAREST)                                     ,       310,        2
+TIMISOARA        ,        6, (TIMISOARA LUGOJ MEHADIA DOBRETA CRAIOVA PITESTI BUCHAREST)   ,       615,        4
+URZICENI         ,        1, (URZICENI BUCHAREST)                                          ,        85,        1
+VASLUI           ,        2, (VASLUI URZICENI BUCHAREST)                                   ,       227,        1
+ZERIND           ,        4, (ZERIND ARAD SIBIU FAGARAS BUCHAREST)                         ,       525,        6
+
+
+
+
+
+A* GRAPH SEARCH
+
+City Name        , Expanded, Path to Bucharest                                             , Path Cost, CPU Time
+
+ARAD             ,        7, (ARAD SIBIU FAGARAS BUCHAREST)                                ,       450,        5
+BUCHAREST        ,        0, (BUCHAREST)                                                   ,         0,        0
+CRAIOVA          ,        2, (CRAIOVA PITESTI BUCHAREST)                                   ,       239,        1
+DOBRETA          ,        4, (DOBRETA CRAIOVA PITESTI BUCHAREST)                           ,       359,        4
+EFORIE           ,        3, (EFORIE HIRSOVA URZICENI BUCHAREST)                           ,       269,        2
+FAGARAS          ,        1, (FAGARAS BUCHAREST)                                           ,       211,        1
+GIURGIU          ,        1, (GIURGIU BUCHAREST)                                           ,        90,        1
+HIRSOVA          ,        2, (HIRSOVA URZICENI BUCHAREST)                                  ,       183,        1
+IASI             ,        3, (IASI VASLUI URZICENI BUCHAREST)                              ,       319,        1
+LUGOJ            ,        6, (LUGOJ MEHADIA DOBRETA CRAIOVA PITESTI BUCHAREST)             ,       504,        3
+MEHADIA          ,        5, (MEHADIA DOBRETA CRAIOVA PITESTI BUCHAREST)                   ,       434,        3
+NEAMT            ,        4, (NEAMT IASI VASLUI URZICENI BUCHAREST)                        ,       406,        1
+ORADEA           ,        6, (ORADEA SIBIU FAGARAS BUCHAREST)                              ,       461,        7
+PITESTI          ,        1, (PITESTI BUCHAREST)                                           ,       101,        1
+RIMNICU_VILCEA   ,        2, (RIMNICU_VILCEA PITESTI BUCHAREST)                            ,       198,        1
+SIBIU            ,        4, (SIBIU FAGARAS BUCHAREST)                                     ,       310,        2
+TIMISOARA        ,       11, (TIMISOARA ARAD SIBIU FAGARAS BUCHAREST)                      ,       568,        5
+URZICENI         ,        1, (URZICENI BUCHAREST)                                          ,        85,        1
+VASLUI           ,        2, (VASLUI URZICENI BUCHAREST)                                   ,       227,        1
+ZERIND           ,        8, (ZERIND ARAD SIBIU FAGARAS BUCHAREST)                         ,       525,        4
