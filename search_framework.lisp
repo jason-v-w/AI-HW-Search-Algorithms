@@ -52,12 +52,13 @@
 ;;; frontier (where a node is as desribed in general_problem_framework.lisp)
 (defun graph-search (problem &key
 			     (test 'equal)
-			     (priority-function #'(lambda (x y) t))) ; arbitrary ordering
+			     (priority-function #'(lambda (x y) t))); vacuous ordering
   "Perform a graph search of the problem"
+  (print "GRAPHSEARCH")
   (let ((frontier (create-heap priority-function))                  ; empty priority queue
 	(frontier-or-explored-set (make-hash-table :test test))     ; empty hash table
 	(init-node (make-node :state (general-problem-init problem) ; node from initial state
-			      :parent nil))	; root node of search tree
+			      :parent nil))                         ; root node of search tree
                                                                     ; path-cost handled by problem
 	(get-allowed-actions (general-problem-actions problem))
 	(get-transition-result (general-problem-transition-model problem))
@@ -68,68 +69,63 @@
 	(num-nodes-expanded 0))		; used for analysis purposes
 
     (flet ((add-to-frontier-or-explored (node)
-	     ;; add state of node to frontier-or-explored hash
 	     (setf (gethash (node-state node)
 			    frontier-or-explored-set)
 	       (node-state node)))
 	   (in-frontier-or-explored-p (node)
-	     (gethash (node-state init-node) frontier-or-explored-set))
+	     (gethash (node-state node) frontier-or-explored-set))
 
 	   (add-to-frontier (node)
-	     ;; add node to frontier heap
 	     (heap-insert frontier node)))
 
       ;; graph search initilization
-      (setf (node-path-cost init-node) (path-cost init-node))
-      (print init-node)
-
-
-      (setq n1 (make-node :parent nil
-		    :state 'arad
-		    :path-cost 0
-		    :heuristic nil))
-
-      (setq n2 (make-node :parent nil
-		    :state 'bucharest
-		    :path-cost 100
-		    :heuristic nil))
-      (print n1)
-      (print n2)
-      (print frontier)
-      (print "build nodes")
-      (heap-insert frontier n1)
-      (heap-insert frontier n2)
-      (print "added tests")
-      (print frontier)
+      (setf (node-path-cost init-node) (funcall path-cost init-node))
 
       (add-to-frontier init-node)
-      (print frontier)
 
       ;; graph search loop
-      (print "hi!")
-      (tagbody
-       repeat ; tagbody label
-	(print frontier)
-	(if (heap-empty-p frontier)             ; if no options remain
-	    (return nil))		        ; return nil (represents failure)
-	(setq init-node (heap-remove frontier)) ; get current node (removed from frontier)
+      (do () (nil)                                 ; do forever
+	(print "repeat")
+	(print (loop for value being the hash-values of frontier-or-explored-set collect value))
+	; (print frontier)
+	(if (heap-empty-p frontier)	; if no options remain
+	    (progn
+	      (print "FAIL")
+	      (return nil)))		; return nil (represents failure)
+	(setq current-node (heap-remove frontier)) ; get current node (removed from frontier)
 
 	;; if a goal is found
-	(if (goal-test current-node)
-	    (make-solution :path current-node
-			   :other (list (list "num-nodes-expanded" num-nodes-expanded))))
+	(print (node-state current-node))
+	(if (funcall goal-test (node-state current-node))
+	    (return (make-general-solution :path current-node
+					   :extra (list
+						   (list "num-nodes-expanded"
+							 num-nodes-expanded)))))
+
+	(print "no goal found")
 	(add-to-frontier-or-explored current-node)
 
 	;; expand node
-	(dolist action (get-allowed-actions current-node) ; for each allowed action
+	; (print "actions:")
+	; (print (funcall get-allowed-actions (node-state current-node)))
+	(dolist (action (funcall get-allowed-actions (node-state current-node))) ; for each allowed action
+	  ; (print "action:")
+	  ; (print action)
 	  (setq a-child-node (child-node problem ; get the child node for this action
 					 current-node
 					 action))
-	  (if (not (in-frontier-or-explored a-child-node)) ; if not explored
+
+	  ; (print "child node")
+	  ; (print a-child-node)
+	  ; (print "frontier-or-explored")
+	  ; (print frontier-or-explored-set)
+	  ; (print "in frontier?")
+	  ; (print (in-frontier-or-explored-p a-child-node))
+	  (if (not (in-frontier-or-explored-p a-child-node)) ; if not explored
 	      (progn
+		; (print "adding to frontier")
 		(add-to-frontier a-child-node)
-		(add-to-frontier-or-explored a-child-node))))
-       repeat))))
+		(add-to-frontier-or-explored a-child-node))))))))
 
 
 

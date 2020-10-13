@@ -1,10 +1,12 @@
 (load "/home/jason/Dropbox/classes/csce_876_artificial_intelligence/hw_4/lisp/general_problem_framework.lisp")
 (load "/home/jason/Dropbox/classes/csce_876_artificial_intelligence/hw_4/lisp/map_traversal_problem_description.lisp")
-(load "/home/jason/Dropbox/classes/csce_876_artificial_intelligence/hw_4/lisp/search_framework.lisp")
-; (load "/home/jason/Dropbox/classes/csce_876_artificial_intelligence/hw_4/lisp/heap.lisp")
 (load "/home/jason/Dropbox/classes/csce_876_artificial_intelligence/hw_4/lisp/my_heap.lisp")
+
+
+(load "/home/jason/Dropbox/classes/csce_876_artificial_intelligence/hw_4/lisp/search_framework.lisp")
 (load "/home/jason/Dropbox/classes/csce_876_artificial_intelligence/hw_4/lisp/main.lisp")
 
+; (load "/home/jason/Dropbox/classes/csce_876_artificial_intelligence/hw_4/lisp/heap.lisp")
 
 
 

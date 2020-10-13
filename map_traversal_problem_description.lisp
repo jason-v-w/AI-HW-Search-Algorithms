@@ -180,9 +180,9 @@
 
 
 
-;;; +-----------------------------------------+
-;;; | Create Instance of Map Tracking Problem |
-;;; +-----------------------------------------+
+;;; +------------------------------------------+
+;;; | Create Instance of Map Traversal Problem |
+;;; +------------------------------------------+
 
 (defun new-map-traversal-problem (map start-city end-city)
   "Returns a problem instance of trying to go from the start-city to the

@@ -78,18 +78,21 @@
 		     :parent parent
 		     :action action
 		     :path-cost nil)))	; temporarily
-    (print "child-node-function")
-    (print child)
-    ; (print path-cost)
-    ; (print (node-path-cost child))
-    (print (funcall (general-problem-path-cost problem) (make-node :parent nil
-		    :state 'arad
-		    :path-cost nil
-		    :heuristic nil)))
-    (print (funcall (general-problem-path-cost problem) child))
 
     (setf (node-path-cost child) (funcall path-cost child)) ; set path-cost propety
-    
-    (print child)
-    
+
     child))				; return
+
+
+
+
+
+;;; +---------------------+
+;;; | Formatting Function |
+;;; +---------------------+
+
+(defun get-state-sequence (solution)
+  "Get the ordered list of states from a solution"
+  (do* ((state-seq nil (cons (node-state node) state-seq))
+       (node (general-solution-path solution) (node-parent node)))
+      ((null node) state-seq)))
