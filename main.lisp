@@ -101,25 +101,33 @@
 
 (defun csv-output (search-strategy-name use-graph-search-p table-name)
   "Produce comma separated output for use in making a table"
+  (let ((head-format-string "~17A, ~8A, ~62A, ~9A, ~8A~2%")
+	(body-format-string "~17A, ~8D, ~62A, ~9D, ~8D~1%"))
 
-  ;; table header
-  (format t "~A~1%" table-name)
-  (format t "City Name, Num. Nodes Visited, Path to Bucharest, Path Cost, CPU Time~1%")
+    ;; table header
+    (format t "~A~2%" table-name)
+    (format t head-format-string
+	    "City Name"
+	    "Expanded"
+	    "Path to Bucharest"
+	    "Path Cost"
+	    "CPU Time")
 
-  ;; rest of the table; one row per start city
-  (dolist (start-city (mapcar 'first *ROMANIA-MAP*))
-    (let* ((solution   (romania-search start-city search-strategy-name use-graph-search-p))
-	   (path       (get-state-sequence solution))
-	   (cost       (node-path-cost (general-solution-node solution)))
-	   (extra      (general-solution-extra solution))
-	   (n-expanded (second (assoc 'n-expanded extra)))
-	   (cpu-time   (second (assoc 'cpu-time extra))))
-      (format t "~A, ~D, ~A, ~D, ~A~1%"
-	      start-city
-	      n-expanded
-	      path
-	      cost
-	      cpu-time))))
+    ;; rest of the table; one row per start city
+    (dolist (start-city (mapcar 'first *ROMANIA-MAP*))
+      (let* ((solution   (romania-search start-city search-strategy-name use-graph-search-p))
+	     (path       (get-state-sequence solution))
+	     (cost       (node-path-cost (general-solution-node solution)))
+	     (extra      (general-solution-extra solution))
+	     (n-expanded (second (assoc 'n-expanded extra)))
+	     (cpu-time   (second (assoc 'cpu-time extra))))
+	(format t body-format-string
+		start-city
+		n-expanded
+		path
+		cost
+		cpu-time)))
+    (format t "~5%")))
 
 
 
