@@ -1,3 +1,7 @@
+;;; +----------------------------------------+
+;;; | map_traversal_problem_description.lisp |
+;;; +----------------------------------------+
+;;;
 ;;; Jason Vander Woude
 ;;;
 ;;; Homework 4

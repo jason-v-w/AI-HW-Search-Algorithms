@@ -1,3 +1,7 @@
+;;; +-----------+
+;;; | heap.lisp |
+;;; +-----------+
+;;;
 ;;; Jason Vander Woude
 ;;;
 ;;; Homework 4
@@ -8,9 +12,10 @@
 
 
 
-;;; This file contains a VERY INEFFICIENT heap. The purpose of the assignment is
-;;; to get search strategies working which rely on a heap. This serves the
-;;; purposes required for that level of abstraction.
+;;; This file contains a VERY INEFFICIENT quick and dirty heap. The
+;;; purpose of the assignment is to get search strategies working
+;;; which rely on a heap. This serves the purposes required for that
+;;; level of abstraction.
 
 
 
