@@ -27,7 +27,7 @@ ZERIND           ,       93, (ZERIND ARAD SIBIU RIMNICU_VILCEA PITESTI BUCHAREST
 
 
 
-GREADY TREE SEARCH
+GREEDY TREE SEARCH
 
 City Name        , Expanded, Path to Bucharest                                             , Path Cost, CPU Time
 
@@ -114,7 +114,7 @@ ZERIND           ,       12, (ZERIND ORADEA SIBIU FAGARAS BUCHAREST)            
 
 
 
-GREADY GRAPH SEARCH
+GREEDY GRAPH SEARCH
 
 City Name        , Expanded, Path to Bucharest                                             , Path Cost, CPU Time
 

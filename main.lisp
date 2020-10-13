@@ -138,9 +138,9 @@
 ;;; +---------------------+
 
 (csv-output "best-first" nil "BEST-FIRST TREE SEARCH")
-(CSV-output "greedy"     nil "GREADY TREE SEARCH")
+(CSV-output "greedy"     nil "GREEDY TREE SEARCH")
 (csv-output "A*"         nil "A* TREE SEARCH")
 
 (csv-output "best-first" t   "BEST-FIRST GRAPH SEARCH")
-(CSV-output "greedy"     t   "GREADY GRAPH SEARCH")
+(CSV-output "greedy"     t   "GREEDY GRAPH SEARCH")
 (csv-output "A*"         t   "A* GRAPH SEARCH")
