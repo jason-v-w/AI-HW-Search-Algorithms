@@ -25,6 +25,7 @@
   transition-model  ; function taking a state and valid action and returing the next state
   goal-test         ; function taking a state returning whether it is a goal
   path-cost         ; function taking a node and returning a cost (not necessarily step costs)
+  heuristic         ; function taking a node and returning a heuristic value
   state-equal-p)    ; function takeing two states and returning if they are the same
 
 
@@ -36,7 +37,7 @@
 ;;; +---------------------------------------+
 
 (defstruct general-solution
-  path	  ; a goal node implicitly defining a path
+  node    ; a goal node implicitly defining a path
   extra)  ; keep extra information about solving for a solution
 
 
@@ -51,8 +52,8 @@
   state       ; state of the node
   parent      ; parent node
   action      ; the action that resulted in this node
-  path-cost   ; not a function; just a number; useful for avoiding repeated calcuations
-  heuristic)  ; not needed for all search types
+  path-cost   ; used by search algorithms to store computed values
+  heuristic)  ; used by search algorithms to store computed values
 
 
 
@@ -70,6 +71,7 @@
   (let* (				; information from problem
 	 (transition-model (general-problem-transition-model problem))
 	 (path-cost (general-problem-path-cost problem))
+	 (heuristic (general-problem-heuristic problem))
 
 	 (child
 	  (make-node :state (funcall transition-model
@@ -77,9 +79,11 @@
 				     action)
 		     :parent parent
 		     :action action
-		     :path-cost nil)))	; temporarily
+		     :heuristic nil    ; temporarily
+		     :path-cost nil)))  ; temporarily
 
     (setf (node-path-cost child) (funcall path-cost child)) ; set path-cost propety
+    (setf (node-heuristic child) (funcall heuristic child)) ; set heuristic propety
 
     child))				; return
 
@@ -94,5 +98,5 @@
 (defun get-state-sequence (solution)
   "Get the ordered list of states from a solution"
   (do* ((state-seq nil (cons (node-state node) state-seq))
-       (node (general-solution-path solution) (node-parent node)))
+       (node (general-solution-node solution) (node-parent node)))
       ((null node) state-seq)))

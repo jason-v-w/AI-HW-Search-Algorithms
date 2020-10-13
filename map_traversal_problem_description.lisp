@@ -180,6 +180,24 @@
 
 
 
+;;; +----------------------------------------------+
+;;; | Closure Heuristic Value Function (of a Node) |
+;;; +----------------------------------------------+
+
+;;; Compute the heuristic value of a node. In general it does not need to be
+;;; a function of only the state, though in this case it will be.
+
+;;; TODO Make sure there is a guarantee that a node has a heuristic value before
+;;; computing the heuristic of a child
+(defun get-heuristic-function (cities-htable)
+  "PRIVATE. Returns a closure that returns the heuristic value of a node"
+  #'(lambda (node)
+      (city-h (gethash (node-state node) cities-htable))))
+
+
+
+
+
 ;;; +------------------------------------------+
 ;;; | Create Instance of Map Traversal Problem |
 ;;; +------------------------------------------+
@@ -194,4 +212,5 @@
      :transition-model 'transition-result
      :goal-test (get-goal-test-function end-city)
      :path-cost (get-path-cost-function cities-htable)
+     :heuristic (get-heuristic-function cities-htable)
      :state-equal-p 'city-equal)))
